@@ -12,12 +12,18 @@ namespace Metadata.Extension.Editor
         [SerializeField]
         private List<string> keys, values;
 
-        //[MenuItem("Tools/Add mesh collider to mesh")]
-        static void Init()
+        //[MenuItem("Tools/Add mesh collider to mesh test")]
+        private static void Init()
         {
             // Get existing open window or if none, make a new one:
             AddMeshEditorTest window = (AddMeshEditorTest)GetWindow(typeof(AddMeshEditorTest));
             window.Show();
+        }
+
+        private void OnEnable()
+        {
+            keys ??= new List<string>();
+            values ??= new List<string>();
         }
 
         private void OnGUI()
@@ -44,6 +50,7 @@ namespace Metadata.Extension.Editor
             EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
             
+           
             
             if (GUILayout.Button("Add"))
             {
@@ -52,6 +59,8 @@ namespace Metadata.Extension.Editor
                 values ??= new List<string>();
                 values.Add(string.Empty);
             }
+            
+            GUI.enabled = keys.Count > 0;
 
             if (GUILayout.Button("Remove last"))
             {
@@ -61,11 +70,13 @@ namespace Metadata.Extension.Editor
                 values.RemoveAt(values.Count - 1);
             }
             
+            GUI.enabled = true;
+            
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.Space();
             so.ApplyModifiedProperties(); // Remember to apply modified properties
             so.Update();
-            EditorGUILayout.BeginHorizontal();
+            GUI.enabled = keys.Count > 0 && !keys.Any(string.IsNullOrEmpty) && !values.Any(string.IsNullOrEmpty);
             if (GUILayout.Button("Add Mesh Collider"))
             {
                 var allMetaDataObjs = FindObjectsOfType<UnityEngine.Reflect.Metadata>();
@@ -102,7 +113,6 @@ namespace Metadata.Extension.Editor
                 }
     #endif
             }
-            EditorGUILayout.EndHorizontal();
         }
     }
 }
