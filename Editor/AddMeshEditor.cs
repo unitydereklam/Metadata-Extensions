@@ -16,7 +16,7 @@ namespace Metadata.Extension.Editor
         private static void Init()
         {
             // Get existing open window or if none, make a new one:
-            AddMeshEditor window = (AddMeshEditor)GetWindow(typeof(AddMeshEditor));
+            AddMeshEditor window = (AddMeshEditor)GetWindow(typeof(AddMeshEditor), false, "Add mesh collider to mesh", true);
             window.Show();
         }
 
