@@ -10,7 +10,7 @@ Dependencies: com.unity.reflect - v2.0.0
 
 Install instruction:
 
-Copy this linke by click the "Copy" button next the link
+Copy this link by click the "Copy" button as shown
 
 <img width="750" alt="image" src="https://user-images.githubusercontent.com/89197200/155710899-1e0903f1-1c4c-4e54-b0f6-11137e50e163.png">
 
